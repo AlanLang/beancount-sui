@@ -1,4 +1,4 @@
-import { getMember } from './bean'
+import { getAccount, getCategory, getMember } from './bean'
 import { BillResponse, List } from './sui'
 
 init()
@@ -14,18 +14,17 @@ async function init() {
       category[item.categoryId] = item.categoryName
     })
   })
-  console.log(account)
-  console.log(category)
-  console.log(bean.join('\r\n'))
+  console.log(bean.reverse().join('\r\n'))
 }
 
 function renderBean(item: List) {
+  const meno = `${item.projectName} ${item.sellerAcount} ${item.memo}`.trim()
   if (item.tranName === '支出') {
     return `${dateFormat('YYYY-mm-dd', new Date(item.date.time))} * "${getMember(
       item.memberId
-    )}" "${item.projectName} ${item.sellerAcount} ${item.memo}"
-${item.categoryName}                                ${item.itemAmount} CNY
-${item.buyerAcount}                                -${item.itemAmount} CNY`
+    )}" "${meno}"
+${getCategory(item.categoryId, item.categoryName)}    ${item.itemAmount} CNY
+${getAccount(item.buyerAcountId, item.buyerAcount)}  -${item.itemAmount} CNY`
   }
   return ''
 }

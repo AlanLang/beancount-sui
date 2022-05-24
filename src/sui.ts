@@ -1,4 +1,4 @@
-import { MEMBER } from './bean'
+import { ACCOUNT, MEMBER } from './bean'
 
 export interface BillResponse {
   income: number
@@ -20,7 +20,7 @@ export interface Group {
 export interface List {
   account: number
   buyerAcount: string
-  buyerAcountId: number
+  buyerAcountId: keyof typeof ACCOUNT
   categoryIcon: string
   categoryId: number
   categoryName: string
