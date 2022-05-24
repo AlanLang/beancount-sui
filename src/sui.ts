@@ -1,3 +1,5 @@
+import { MEMBER } from './bean'
+
 export interface BillResponse {
   income: number
   beginDate: string
@@ -27,7 +29,7 @@ export interface List {
   date: DateClass
   imgId: number
   itemAmount: number
-  memberId: number
+  memberId: keyof typeof MEMBER
   memberName: string
   memo: string
   projectId: number

@@ -1,9 +1,33 @@
-import { BillResponse } from './sui'
+import { getMember } from './bean'
+import { BillResponse, List } from './sui'
 
 init()
 async function init() {
+  const bean: string[] = []
+  const account: { [key: number]: string } = {}
+  const category: { [key: number]: string } = {}
   const list = await getBillList()
-  console.log(list)
+  list.forEach((day) => {
+    day.list.forEach((item) => {
+      bean.push(renderBean(item))
+      account[item.buyerAcountId] = item.buyerAcount
+      category[item.categoryId] = item.categoryName
+    })
+  })
+  console.log(account)
+  console.log(category)
+  console.log(bean.join('\r\n'))
+}
+
+function renderBean(item: List) {
+  if (item.tranName === '支出') {
+    return `${dateFormat('YYYY-mm-dd', new Date(item.date.time))} * "${getMember(
+      item.memberId
+    )}" "${item.projectName} ${item.sellerAcount} ${item.memo}"
+${item.categoryName}                                ${item.itemAmount} CNY
+${item.buyerAcount}                                -${item.itemAmount} CNY`
+  }
+  return ''
 }
 
 async function getBillList() {
