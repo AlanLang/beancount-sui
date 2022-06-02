@@ -69,4 +69,5 @@ export enum Relation {
 export enum TranName {
   支出 = '支出',
   转账 = '转账',
+  收入 = '收入',
 }

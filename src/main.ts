@@ -13,20 +13,19 @@ async function init() {
       account[item.buyerAcountId] = item.buyerAcount
       category[item.categoryId] = item.categoryName
     })
+    bean.push(`;--------${dateFormat('YYYY年mm月dd日', new Date(day.list[0].date.time))}--------`)
   })
   console.log(bean.reverse().join('\r\n'))
 }
 
 function renderBean(item: List) {
-  const meno = `${item.projectName} ${item.sellerAcount} ${item.memo}`.trim()
-  if (item.tranName === '支出') {
-    return `${dateFormat('YYYY-mm-dd', new Date(item.date.time))} * "${getMember(
+  const meno = `${item.sellerAcount} ${item.memo}`.trim()
+  return `${dateFormat('YYYY-mm-dd', new Date(item.date.time))} * "${getMember(
       item.memberId
-    )}" "${meno}"
-${getCategory(item.categoryId, item.categoryName)}    ${item.itemAmount} CNY
-${getAccount(item.buyerAcountId, item.buyerAcount)}  -${item.itemAmount} CNY`
-  }
-  return ''
+    )}" "${item.tranName === '转账' ? item.tranName: ""}${meno}"
+    ${getCategory(item.categoryId, item.categoryName)}    ${item.tranName === '收入' ? "-": ""}${item.itemAmount} CNY
+    ${getAccount(item.buyerAcountId, item.buyerAcount)}  ${item.tranName === '收入' ? "": "-"}${item.itemAmount} CNY \r\n`
+
 }
 
 async function getBillList() {

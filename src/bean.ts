@@ -36,6 +36,8 @@ export const CATEGORY = {
   60777929428: 'Expenses:Shop:药品',
   60777929444: 'Expenses:Daily:燃气费',
   60777929456: 'Income:Life:红包',
+  60777929340: 'Expenses:Life:红包',
+  60777929440: 'Expenses:Daily:电费',
 }
 
 export function getMember(memberId: keyof typeof MEMBER) {
