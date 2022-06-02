@@ -20,12 +20,15 @@ async function init() {
 
 function renderBean(item: List) {
   const meno = `${item.sellerAcount} ${item.memo}`.trim()
-  return `${dateFormat('YYYY-mm-dd', new Date(item.date.time))} * "${getMember(
-      item.memberId
-    )}" "${item.tranName === '转账' ? item.tranName: ""}${meno}"
-    ${getCategory(item.categoryId, item.categoryName)}    ${item.tranName === '收入' ? "-": ""}${item.itemAmount} CNY
-    ${getAccount(item.buyerAcountId, item.buyerAcount)}  ${item.tranName === '收入' ? "": "-"}${item.itemAmount} CNY \r\n`
-
+  return `${dateFormat('YYYY-mm-dd', new Date(item.date.time))} * "${getMember(item.memberId)}" "${
+    item.tranName === '转账' ? item.tranName : ''
+  }${meno}"
+    ${getCategory(item.categoryId, item.categoryName)}    ${item.tranName === '收入' ? '-' : ''}${
+    item.itemAmount
+  } CNY
+    ${getAccount(item.buyerAcountId, item.buyerAcount)}  ${item.tranName === '收入' ? '' : '-'}${
+    item.itemAmount
+  } CNY \r\n`
 }
 
 async function getBillList() {
