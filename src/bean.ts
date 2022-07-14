@@ -12,6 +12,7 @@ export const ACCOUNT = {
   5620194972: 'Assets:Home:五口灶',
   5620195088: 'Liabilities:MeiMei:蚂蚁花呗',
   5620195090: 'Liabilities:MeiMei:招商银行',
+  5650393947: 'Assets:Alan:购物基金',
 }
 export const CATEGORY = {
   0: '未知',
@@ -38,10 +39,11 @@ export const CATEGORY = {
   60777929456: 'Income:Life:红包',
   60777929340: 'Expenses:Life:红包',
   60777929440: 'Expenses:Daily:电费',
+  60777929438: 'Expenses:Daily:快递费',
 }
 
 export function getMember(memberId: keyof typeof MEMBER) {
-  return MEMBER[memberId] || '未知'
+  return MEMBER[memberId] || memberId
 }
 
 export function getAccount(accountId: keyof typeof ACCOUNT, accountName: string) {
