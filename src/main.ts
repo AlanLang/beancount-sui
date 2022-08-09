@@ -1,7 +1,28 @@
 import { getAccount, getCategory, getMember } from './bean'
 import { BillResponse, List } from './sui'
-
+appendDom()
 init()
+
+function appendDom() {
+  const button = document.createElement('button')
+  button.style.position = 'fixed'
+  button.style.top = '20px'
+  button.style.right = '20px'
+  button.style.zIndex = '10000000'
+  button.textContent = '生成'
+
+  const input = document.createElement('input')
+  input.style.position = 'fixed'
+  input.style.top = '20px'
+  input.style.right = '70px'
+  input.style.zIndex = '10000000'
+  input.style.width = '150px'
+  input.style.height = '26px'
+  input.value = `${dateFormat('YYYY.mm', new Date())}.01-${dateFormat('YYYY.mm.dd', new Date())}`
+  document.body.appendChild(button)
+  document.body.appendChild(input)
+}
+
 async function init() {
   const bean: string[] = []
   const account: { [key: number]: string } = {}
