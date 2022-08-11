@@ -23,6 +23,7 @@ export const CATEGORY = {
   60777929326: 'Expenses:Diet:餐馆',
   60777929327: 'Expenses:Diet:餐馆',
   60777929328: 'Expenses:Diet:餐馆',
+  60777929329: 'Expenses:Diet:餐馆',
   60777929331: 'Expenses:Diet:买菜',
   60777929354: 'Expenses:Fun:彩票',
   60777929381: 'Expenses:Shop:衣服',
@@ -40,6 +41,11 @@ export const CATEGORY = {
   60777929340: 'Expenses:Life:红包',
   60777929440: 'Expenses:Daily:电费',
   60777929438: 'Expenses:Daily:快递费',
+  60777929351: 'Expenses:Daily:话费',
+  32609320: 'Expenses:Traffic:高速',
+  3347911638: 'Income:Life:变卖家产',
+  60777929370: 'Expenses:Medical:买药',
+  60777929333: 'Expenses:Life:孝敬长辈',
 }
 
 export function getMember(memberId: keyof typeof MEMBER) {

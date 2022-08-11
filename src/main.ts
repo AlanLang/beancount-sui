@@ -1,9 +1,8 @@
 import { getAccount, getCategory, getMember } from './bean'
 import { BillResponse, List } from './sui'
-appendDom()
 init()
 
-function appendDom() {
+async function init() {
   const button = document.createElement('button')
   button.style.position = 'fixed'
   button.style.top = '20px'
@@ -21,22 +20,24 @@ function appendDom() {
   input.value = `${dateFormat('YYYY.mm', new Date())}.01-${dateFormat('YYYY.mm.dd', new Date())}`
   document.body.appendChild(button)
   document.body.appendChild(input)
-}
 
-async function init() {
-  const bean: string[] = []
-  const account: { [key: number]: string } = {}
-  const category: { [key: number]: string } = {}
-  const list = await getBillList()
-  list.forEach((day) => {
-    day.list.forEach((item) => {
-      bean.push(renderBean(item))
-      account[item.buyerAcountId] = item.buyerAcount
-      category[item.categoryId] = item.categoryName
+  button.addEventListener('click', async () => {
+    const inputValue = input.value //2022.08.01-2022.08.11
+    const [start, end] = inputValue.split('-')
+    const bean: string[] = []
+    const account: { [key: number]: string } = {}
+    const category: { [key: number]: string } = {}
+    const list = await getBillList(start, end)
+    list.forEach((day) => {
+      day.list.forEach((item) => {
+        bean.push(renderBean(item))
+        account[item.buyerAcountId] = item.buyerAcount
+        category[item.categoryId] = item.categoryName
+      })
+      bean.push(`;--------${dateFormat('YYYY年mm月dd日', new Date(day.list[0].date.time))}--------`)
     })
-    bean.push(`;--------${dateFormat('YYYY年mm月dd日', new Date(day.list[0].date.time))}--------`)
+    console.log(bean.reverse().join('\r\n'))
   })
-  console.log(bean.reverse().join('\r\n'))
 }
 
 function renderBean(item: List) {
@@ -52,19 +53,19 @@ function renderBean(item: List) {
   } CNY \r\n`
 }
 
-async function getBillList() {
-  const bill = await getBillResponse(0)
+async function getBillList(start: string, end: string) {
+  const bill = await getBillResponse(start, end, 0)
   const list = bill.groups
   if (bill.pageCount > 0) {
     for (let index = 1; index < bill.pageCount; index++) {
-      const { groups } = await getBillResponse(index)
+      const { groups } = await getBillResponse(start, end, index)
       list.push(...groups)
     }
   }
   return list
 }
 
-function getBillResponse(page = 0): Promise<BillResponse> {
+function getBillResponse(start: string, end: string, page = 0): Promise<BillResponse> {
   return new Promise<BillResponse>((resolve, reject) => {
     GM_xmlhttpRequest({
       method: 'POST',
@@ -73,10 +74,7 @@ function getBillResponse(page = 0): Promise<BillResponse> {
         'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
         cookie: document.cookie,
       },
-      data: `opt=list2&beginDate=${dateFormat('YYYY.mm', new Date())}.01&endDate=${dateFormat(
-        'YYYY.mm.dd',
-        new Date()
-      )}&cids=0&bids=0&sids=0&pids=0&memids=0&order=&isDesc=0&page=${page}&note=&mids=0`,
+      data: `opt=list2&beginDate=${start}&endDate=${end}&cids=0&bids=0&sids=0&pids=0&memids=0&order=&isDesc=0&page=${page}&note=&mids=0`,
       onload(response) {
         const result = JSON.parse(response.responseText)
         resolve(result)
