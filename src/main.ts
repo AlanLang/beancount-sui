@@ -41,10 +41,8 @@ async function init() {
 }
 
 function renderBean(item: List) {
-  const meno = `${item.sellerAcount} ${item.memo}`.trim()
-  return `${dateFormat('YYYY-mm-dd', new Date(item.date.time))} * "${getMember(item.memberId)}" "${
-    item.tranName === '转账' ? item.tranName : ''
-  }${meno}"
+  const meno = `${item.memo}`.trim()
+  return `${dateFormat('YYYY-mm-dd', new Date(item.date.time))} * "${item.sellerAcount}" "${meno}" #${getMember(item.memberId)}
     ${getCategory(item.categoryId, item.categoryName)}    ${item.tranName === '收入' ? '-' : ''}${
     item.itemAmount
   } CNY
