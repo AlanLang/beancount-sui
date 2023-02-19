@@ -11,7 +11,7 @@ export const ACCOUNT = {
   5617194751: 'Assets:Alan:公交卡',
   5620194972: 'Assets:Home:五口灶',
   5620195088: 'Liabilities:MeiMei:蚂蚁花呗',
-  5620195090: 'Liabilities:MeiMei:招商银行',
+  5620195090: 'Liabilities:MeiMei:招商银行信用卡',
   5650393947: 'Assets:Alan:购物基金',
 }
 export const CATEGORY = {
