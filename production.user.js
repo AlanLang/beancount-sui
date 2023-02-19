@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         随手记账单
-// @version      0.0.3
+// @version      0.0.4
 // @author       my
 // @include      https://www.sui.com/*
 // @noframes
