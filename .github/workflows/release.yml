@@ -37,6 +37,7 @@ jobs:
         uses: actions/setup-node@master
         with:
           node-version: '16.x'
+      - run: sh ./update-version.sh
       - run: yarn build # 打包
 
       # Deploy to local repo
