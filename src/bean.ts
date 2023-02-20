@@ -47,6 +47,7 @@ export const CATEGORY = {
   60777929370: 'Expenses:Medical:买药',
   60777929333: 'Expenses:Life:孝敬长辈',
   60777929378: 'Expenses:Diet:超市',
+  60777929385: 'Expenses:Diet:日化',
 }
 
 export function getMember(memberId: keyof typeof MEMBER) {
