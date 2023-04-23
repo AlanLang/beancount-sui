@@ -1,4 +1,4 @@
-export const MEMBER = { 60777929312: 'alan', 60777929298: 'home', 60777929314: 'meimei', 60777929311:"baby" } as const
+export const MEMBER = { 60777929312: 'alan', 60777929298: 'home', 60777929314: 'meimei', 60777929311:"baby", 60777929305:"parents" } as const
 export const ACCOUNT = {
   5617194443: 'Liabilities:Alan:招商银行信用卡',
   5617194649: 'Assets:MeiMei:宁波银行',
@@ -35,12 +35,12 @@ export const CATEGORY = {
   60777929403: 'Expenses:Traffic:车险',
   60777929408: 'Expenses:Traffic:停车',
   60777929409: 'Expenses:Traffic:加油',
-  60777929428: 'Expenses:Shop:药品',
-  60777929444: 'Expenses:Daily:燃气费',
+  60777929428: 'Expenses:Medical:药品',
+  60777929444: 'Expenses:Life:燃气费',
   60777929456: 'Income:Life:红包',
   60777929340: 'Expenses:Life:红包',
   60777929440: 'Expenses:Life:电费',
-  60777929438: 'Expenses:Daily:快递费',
+  60777929438: 'Expenses:Life:快递费',
   60777929351: 'Expenses:Life:话费',
   32609320: 'Expenses:Traffic:高速',
   3347911638: 'Income:Life:变卖家产',
@@ -51,7 +51,9 @@ export const CATEGORY = {
   32779819: 'Expenses:Life:理发',
   60777929421: 'Expenses:Medical:保险',
   60777929445: 'Expenses:Life:水费',
-  60777929397: ''
+  60777929407: 'Expenses:Traffic:火车',
+  60777929371: 'Expenses:Shop:宝宝用品',
+  60777929367: 'Expenses:Diet:宝宝'
 }
 
 export function getMember(memberId: keyof typeof MEMBER) {
