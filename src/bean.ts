@@ -1,4 +1,10 @@
-export const MEMBER = { 60777929312: 'alan', 60777929298: 'home', 60777929314: 'meimei', 60777929311:"baby", 60777929305:"parents" } as const
+export const MEMBER = {
+  60777929312: 'alan',
+  60777929298: 'home',
+  60777929314: 'meimei',
+  60777929311: 'baby',
+  60777929305: 'parents',
+} as const
 export const ACCOUNT = {
   5617194443: 'Liabilities:Alan:招商银行信用卡',
   5617194649: 'Assets:MeiMei:宁波银行',
@@ -53,7 +59,8 @@ export const CATEGORY = {
   60777929445: 'Expenses:Life:水费',
   60777929407: 'Expenses:Traffic:火车',
   60777929371: 'Expenses:Shop:宝宝用品',
-  60777929367: 'Expenses:Diet:宝宝'
+  60777929367: 'Expenses:Diet:宝宝',
+  377596783: 'Expenses:Shop:订阅',
 }
 
 export function getMember(memberId: keyof typeof MEMBER) {
